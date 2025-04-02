@@ -152,4 +152,11 @@ mod tests {
         let result = extract_oauth_bearer(input.as_bytes());
         assert_eq!(result, Some("vF9dft4qmTc2Nvb3RlckBhbHRhdmlzdGEuY29tCg=="));
     }
+
+    #[test]
+    fn test_extract_xoauth_bearer() {
+        let input = "n,a=user@example.com,\x01host=server.example.com\x01port=143\x01Bearer vF9dft4qmTc2Nvb3RlckBhbHRhdmlzdGEuY29tCg==\x01\x01";
+        let result = extract_oauth_bearer(input.as_bytes());
+        assert_eq!(result, Some("vF9dft4qmTc2Nvb3RlckBhbHRhdmlzdGEuY29tCg=="));
+    }
 }
